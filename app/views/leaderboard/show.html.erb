@@ -1,0 +1,25 @@
+<h1>Leaderboard <small><%= @users.count %> Contestants</small></h1>
+<table>
+  <thead>
+    <tr>
+      <th>Display Name</th>
+      <th>Score</th>
+      <th>Correct</th>
+      <th>Wrong</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @users.each do |user| %>
+        <tr>
+          <td><strong><%= user.username %></strong></td>
+          <td><strong><%= user.score %></strong></td>
+          <td><%= user.correct %></td>
+          <td><%= user.wrong %></td>
+        </tr>
+      <% end %>
+  </tbody>
+</table>
+
+<script>
+  $('table').dataTable();
+</script>

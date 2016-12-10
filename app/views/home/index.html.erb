@@ -1,0 +1,23 @@
+<div class="jumbotron">
+  <h1>2016 Bowl Pickem</h1>
+  <p>Pick each bowl game and prove you know more about College Football than anybody else!</p>
+  <div class='btn-group'>
+    <%= button_to 'Start Here', predictions_path, method: :get, class: 'btn btn-primary btn-lg' %>
+  </div>
+</div>
+<div class='row'>
+  <div class='col-md-4'>
+    <h2>Pick Each Bowl</h2>
+    <p>Start by picking a winner for each bowl game.</p>
+    <p><%= button_to 'Predictions', predictions_path, method: :get, class: 'btn btn-primary btn-lg' %></p>
+  </div>
+  <div class='col-md-4'>
+    <h2>Track Your Status!</h2>
+    <p>Keep track of your position in the Leaderboard. After each game, your score will be updated.</p>
+    <p><%= button_to 'Leaderboard', leaderboard_path, method: :get, class: 'btn btn-primary btn-lg' %></p>
+  </div>
+  <div class='col-md-4'>
+    <h2>Declare Victory!</h2>
+    <p>Once you have won, make sure you tell everybody that you are a genius at picking College Football games!</p>
+  </div>
+</div>

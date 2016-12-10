@@ -1,0 +1,37 @@
+<%= form_for current_user do |f| %>
+  <% if current_user.errors.any? %>
+    <p class='alert alert-info'>
+      <ul>
+        <% current_user.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </p>
+  <% end %>
+  <div class="form-group">
+    <%= f.label :username, 'Display Name' %>
+    <%= f.text_field :username, value: current_user.username, class: 'form-control' %>
+  </div>
+
+<% @bowls.each do |bowl| %>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h3 class="panel-title"><strong><%= bowl.name %></strong> - <%= bowl.points %> Points <small><%= bowl.game_date.strftime("%-m/%-d/%Y") %></small></h3>
+    </div>
+    <div class="panel-body">
+      <% bowl.teams.each do |team| %>
+        <%= radio_button_tag bowl.id, team.id, @predictions.select{|prediction| prediction.bowl_id == bowl.id && prediction.team_id == team.id}.count > 0, data: {
+          remote: true,
+          url: url_for(action: :pick, user_id: current_user.id, bowl_id: bowl.id, team_id: team.id),
+          method: 'POST'
+          }, class: 'radio_selector' %>
+        <%= label_tag "#{bowl.id}_#{team.id}", "#{team.name} (#{team.team_record})" %> <br>
+      <% end %>
+    </div>
+  </div>
+<% end %>
+
+  <div class="form-group">
+    <%= f.submit class: 'btn btn-default' %>
+  </div>
+<% end %>

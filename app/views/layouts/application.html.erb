@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bowl Pickem</title>
+    <%= csrf_meta_tags %>
+
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  </head>
+
+  <body>
+    <nav class='navbar navbar-inverse navbar-fixed-top'>
+      <div class='container-fluid'>
+        <div class='navbar-header'>
+          <button type='button' class='navbar-toggle collapsed' data-toggle='collapse' data-target='#navbar-collapse' aria-expanded='false'>
+            <span class='sr-only'>Toggle navigation</span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+            <span class='icon-bar'></span>
+          </button>
+          <%= link_to root_path, class: 'navbar-brand' do %>
+            Bowl Pickem
+          <% end %>
+        </div>
+        <div class='collapse navbar-collapse' id='navbar-collapse'>
+          <ul class='nav navbar-nav navbar-left'>
+            <% if user_signed_in? %>
+              <li>
+                <%= link_to 'Predictions', :predictions %>
+              </li>
+            <% end %>
+            <li>
+              <%= link_to 'Leaderboard', :leaderboard %>
+            </li>
+          </ul>
+          <ul class='nav navbar-nav navbar-right'>
+            <%= render partial: 'devise/menu/login_items' %>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="container header-padding">
+      <% if notice %>
+        <p class='alert alert-info'><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class='alert alert-danger'><%= alert %></p>
+      <% end %>
+      <%= yield %>
+    </div>
+  </body>
+</html>
