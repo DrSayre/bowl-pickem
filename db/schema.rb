@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20161209033142) do
+ActiveRecord::Schema.define(version: 20161217033720) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -22,6 +22,15 @@ ActiveRecord::Schema.define(version: 20161209033142) do
     t.datetime "updated_at", null: false
     t.index ["bowl_id"], name: "index_bowl_games_on_bowl_id", using: :btree
     t.index ["team_id"], name: "index_bowl_games_on_team_id", using: :btree
+  end
+
+  create_table "bowl_results", force: :cascade do |t|
+    t.integer  "bowl_id"
+    t.integer  "team_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bowl_id"], name: "index_bowl_results_on_bowl_id", using: :btree
+    t.index ["team_id"], name: "index_bowl_results_on_team_id", using: :btree
   end
 
   create_table "bowls", force: :cascade do |t|
@@ -73,6 +82,8 @@ ActiveRecord::Schema.define(version: 20161209033142) do
 
   add_foreign_key "bowl_games", "bowls"
   add_foreign_key "bowl_games", "teams"
+  add_foreign_key "bowl_results", "bowls"
+  add_foreign_key "bowl_results", "teams"
   add_foreign_key "predictions", "bowls"
   add_foreign_key "predictions", "teams"
   add_foreign_key "predictions", "users"

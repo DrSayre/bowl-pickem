@@ -1,0 +1,2 @@
+module BowlResultsHelper
+end
