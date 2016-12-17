@@ -23,8 +23,8 @@
         <%= radio_button_tag bowl.id, team.id, @predictions.select{|prediction| prediction.bowl_id == bowl.id && prediction.team_id == team.id}.count > 0, data: {
           remote: true,
           url: url_for(action: :pick, user_id: current_user.id, bowl_id: bowl.id, team_id: team.id),
-          method: 'POST'
-          }, class: 'radio_selector' %>
+          method: 'POST',
+          }, class: 'radio_selector', disabled: true %>
         <%= label_tag "#{bowl.id}_#{team.id}", "#{team.name} (#{team.team_record})" %> <br>
       <% end %>
     </div>
