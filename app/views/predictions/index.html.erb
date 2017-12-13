@@ -24,7 +24,7 @@
           remote: true,
           url: url_for(action: :pick, user_id: current_user.id, bowl_id: bowl.id, team_id: team.id),
           method: 'POST',
-          }, class: 'radio_selector', disabled: true %>
+          }, class: 'radio_selector' %>
         <%= label_tag "#{bowl.id}_#{team.id}", "#{team.name} (#{team.team_record})" %> <br>
       <% end %>
     </div>
